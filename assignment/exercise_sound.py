@@ -26,14 +26,14 @@ def quiet():
 
 
 freq: float = 30
-duration: float = 0.1  # seconds
+fur_elise = [329.628, 311.127, 329.628, 311.127, 329.628, 246.942, 293.665, 261.63, 220]
+duration: float = 0.2  # seconds
 
 print("Playing frequency (Hz):")
 
-for i in range(64):
-    print(freq)
-    playtone(freq, duration)
-    freq = int(freq * 1.1)
+for i in fur_elise:
+    print(i)
+    playtone(int(i), duration)
 
 # Turn off the PWM
 quiet()
