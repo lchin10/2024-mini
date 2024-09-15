@@ -27,7 +27,7 @@ def quiet():
 
 freq: float = 30
 fur_elise = [329.628, 311.127, 329.628, 311.127, 329.628, 246.942, 293.665, 261.63, 220]
-duration: float = 0.2  # seconds
+duration: float = 0.3  # seconds
 
 print("Playing frequency (Hz):")
 

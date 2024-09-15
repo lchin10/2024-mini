@@ -6,9 +6,18 @@ from machine import Pin
 import time
 import random
 import json
+import urequests
+import network
+
+wlan = network.WLAN(network.STA_IF)
+if not wlan.active() or not wlan.isconnected():
+    wlan.active(True)
+    wlan.connect("BU Guest (unencrypted)", "")
+    while not wlan.isconnected(): 
+        pass
 
 
-N: int = 3
+N: int = 10
 sample_ms = 10.0
 on_ms = 500
 
@@ -57,7 +66,14 @@ def scorer(t: list[int | None]) -> None:
     # add key, value to this dict to store the minimum, maximum, average response time
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
-    data = {}
+    data = {
+        "min_time": min(t_good) if t_good else 0,
+        "max_time": max(t_good) if t_good else 0,
+        "avg_time": sum(t_good) / len(t_good) if t_good else 0,
+        "score": (len(t_good) / len(t)) if len(t) > 0 else 0
+    }
+    print(data)
+    urequests.post("https://ec463-mini-project-ca0cd-default-rtdb.firebaseio.com/data.json", data=json.dumps(data))
 
     # %% make dynamic filename and write JSON
 
@@ -75,7 +91,7 @@ if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
     led = Pin("LED", Pin.OUT)
-    button = Pin(16, Pin.IN, Pin.PULL_UP)
+    button = Pin(12, Pin.IN, Pin.PULL_UP)
 
     t: list[int | None] = []
 
@@ -100,3 +116,4 @@ if __name__ == "__main__":
     blinker(5, led)
 
     scorer(t)
+
