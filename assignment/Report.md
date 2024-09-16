@@ -19,4 +19,4 @@ The number of iteration was changed to 10 in order for 10 flashes (samples) to b
 
 Implement functions to automatically upload the results to Firebase.
 
-![alt text](https://github.com/[Ichin10]/[2024-mini]/assignment/?raw=true)
+![alt text](https://github.com/[Ichin10]/[2024-mini]/assignment/Results.png?raw=true)
