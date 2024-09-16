@@ -14,3 +14,7 @@ I modified the code to play the first nine notes of Fur Elise.
 
 ## Exercise 3:
 
+Modified the code to comopute the average, minimum and maximum time by adding new def functions.
+The number of iteration was changed to 10 in order for 10 flashes (samples) to be collected.
+
+Implement functions to automatically upload the results to Firebase.
